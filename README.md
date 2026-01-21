@@ -2232,5 +2232,112 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 <script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode-wpr",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"4519cd74f23d496882d41b0240ae1e41","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;Web con menú y monedas ilimitadas&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        nav {
+            background: #333;
+            color: white;
+            display: flex;
+            padding: 1rem;
+            justify-content: space-around;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background: #555;
+            border-radius: 4px;
+        }
+        .container {
+            padding: 2rem;
+            text-align: center;
+        }
+        #coins {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin: 0 0.5rem;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #toggleButton.active {
+            background: #dc3545;
+        }
+        #toggleButton.active:hover {
+            background: #c82333;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav&gt;
+    <a href="#">Inicio</a>
+    <a href="#">Servicios</a>
+    <a href="#">Acerca de</a>
+    <a href="#">Contacto</a>
+&lt;/nav&gt;
+
+&lt;div class="container"&gt;
+    &lt;div id="coins"&gt;Monedas: 0
+    &lt;button id="addCoinButton" onclick="addCoin()"&gt;Agregar moneda&lt;/button&gt;
+    &lt;button id="toggleButton" onclick="toggleActivation()"&gt;Desactivar&lt;/button&gt;
+
+
+&lt;script&gt;
+    let monedas = 0;
+    let activo = true;
+
+    function addCoin() {
+        if (!activo) return; // No hacer nada si está desactivado
+        monedas++;
+        document.getElementById('coins').textContent = 'Monedas: ' + monedas;
+    }
+
+    function toggleActivation() {
+        activo = !activo;
+        const toggleBtn = document.getElementById('toggleButton');
+        const addCoinBtn = document.getElementById('addCoinButton');
+
+        if (activo) {
+            toggleBtn.textContent = 'Desactivar';
+            toggleBtn.classList.remove('active');
+            addCoinBtn.disabled = false;
+            addCoinBtn.style.background = '#28a745';
+            addCoinBtn.style.cursor = 'pointer';
+        } else {
+            toggleBtn.textContent = 'Activar';
+            toggleBtn.classList.add('active');
+            addCoinBtn.disabled = true;
+            addCoinBtn.style.background = '#6c757d';
+            addCoinBtn.style.cursor = 'not-allowed';
+        }
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
 
 <!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->
